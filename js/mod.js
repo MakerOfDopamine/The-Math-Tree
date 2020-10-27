@@ -13,7 +13,7 @@ let modInfo = {
 // Set your version in num and name
 let VERSION = {
 	num: "0.0",
-	name: "Literally nothing",
+	name: "The Origin",
 }
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
@@ -34,7 +34,7 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(0)
 	return gain
 }
 
