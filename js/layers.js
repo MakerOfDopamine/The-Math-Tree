@@ -22,7 +22,28 @@ addLayer("p", {
         },
         row: 0, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
-            {key: "pb", description: "Reset for boosters", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+            {key: "p", description: "Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
         ],
         layerShown(){return true},
+        upgrades: {
+            rows: 1,
+            cols: 1,
+            11: {
+                description: "Gain 1 Point per second.",
+                cost: new Decimal("1"),
+                effect() {
+                    return new Decimal(1)
+                }
+            },
+            12: {
+                description: "Boost the previous upgrade based on current prestige points.",
+                cost: new Decimal("1"),
+                effect() {
+                    return new Decimal(2)
+                },
+                unlocked() {
+                    return hasUpgrade("p", 11)
+                }
+            }
+        }
 })
