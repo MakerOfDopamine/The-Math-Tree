@@ -26,7 +26,7 @@ addLayer("p", {
         ],
         layerShown(){return true},
         upgrades: {
-            rows: 1,
+            rows: 2,
             cols: 2,
             11: {
                 description: "Gain 1 Point per second.",
