@@ -12,7 +12,7 @@ addLayer("p", {
         baseResource: "points", // Name of resource prestige is based on
         baseAmount() {return player.points}, // Get the current amount of baseResource
         type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-        exponent: 0.5, // Prestige currency exponent
+        exponent: hasUpgrade("p",21) ? 0.6 : 0.5, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
             return mult
@@ -26,7 +26,7 @@ addLayer("p", {
         ],
         layerShown(){return true},
         upgrades: {
-            rows: 1,
+            rows: 2,
             cols: 5,
             11: {
                 description: "Gain 1 Point per second.",
@@ -58,6 +58,13 @@ addLayer("p", {
                 cost: new Decimal("5"),
                 unlocked() {
                     return hasUpgrade("p", 14)
+                }
+            },
+            21: {
+                description: "Prestige formula is improved. (^0.5 => ^0.6)",
+                cost: new Decimal("10"),
+                unlocked() {
+                    return hasUpgrade("p", 15)
                 }
             }
         }
