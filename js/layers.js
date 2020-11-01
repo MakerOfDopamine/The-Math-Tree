@@ -26,7 +26,7 @@ addLayer("p", {
         ],
         layerShown(){return true},
         upgrades: {
-            rows: 2,
+            rows: 1,
             cols: 2,
             11: {
                 description: "Gain 1 Point per second.",
@@ -36,7 +36,7 @@ addLayer("p", {
                 }
             },
             12: {
-                description: "Boost the previous upgrade based on current prestige points.",
+                description: "Double your point gain.",
                 cost: new Decimal("1"),
                 effect() {
                     return new Decimal(2)
