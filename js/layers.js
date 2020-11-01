@@ -27,22 +27,23 @@ addLayer("p", {
         layerShown(){return true},
         upgrades: {
             rows: 1,
-            cols: 2,
+            cols: 6,
             11: {
                 description: "Gain 1 Point per second.",
                 cost: new Decimal("1"),
-                effect() {
-                    return new Decimal(1)
-                }
             },
             12: {
                 description: "Double your point gain.",
                 cost: new Decimal("1"),
-                effect() {
-                    return new Decimal(2)
-                },
                 unlocked() {
                     return hasUpgrade("p", 11)
+                }
+            },
+            13: {
+                description: "Double your point gain, again.",
+                cost: new Decimal("1"),
+                unlocked() {
+                    return hasUpgrade("p",12)
                 }
             }
         }
