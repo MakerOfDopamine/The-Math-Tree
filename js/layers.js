@@ -6,7 +6,7 @@ addLayer("p", {
             unlocked: true,
 			points: new Decimal(0),
         }},
-        color: "#00aaff",
+        color: "#00bfbf",
         requires: new Decimal(10), // Can be a function that takes requirement increases into account
         resource: "Prestige Points", // Name of prestige currency
         baseResource: "points", // Name of resource prestige is based on
@@ -27,7 +27,7 @@ addLayer("p", {
         layerShown(){return true},
         upgrades: {
             rows: 7,
-            cols: 9,
+            cols: 7,
             11: {
                 title: "Start Working",
                 description: "Generate 1 Point per second.",
@@ -67,35 +67,33 @@ addLayer("p", {
             },
             16: {
                 title: "All-Nighter",
-                description: "Double your point gain.",
+                description: "Double your point gain, yet again.",
                 cost: new Decimal(5),
                 unlocked() {
                     return hasUpgrade("p",15)
                 }
             },
             17: {
-                title: "Sleep less",
-                description: "Double your point gain.",
+                title: "Work, Work, Work!",
+                description: "Double your point gain, for the final time.",
                 cost: new Decimal(10),
                 unlocked() {
                     return hasUpgrade("p",16)
                 }
             },
-            18: {
-                title: "Work on weekends",
-                description: "Double your point gain.",
-                cost: new Decimal(20),
+            21: {
+                title: "Motivation",
+                description: "Gain more points based on your current points.",
+                cost: new Decimal(10),
                 unlocked() {
-                    return hasUpgrade("p",17)
+                    return hasUpgrade("p",11)
+                },
+                effect() {
+                    return player.points.max(1).log10().pow(2).add(1)
+                },
+                effectDisplay() {
+                    return upgradeEffect("p",21).toStringWithDecimalPlaces(3)
                 }
-            },
-            19: {
-                title: "Work on holidays",
-                description: "Double your point gain.",
-                cost: new Decimal(35),
-                unlocked() {
-                    return hasUpgrade("p",18)
-                }
-            },
+            }
         }
 })
