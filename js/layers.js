@@ -92,8 +92,22 @@ addLayer("p", {
                     return player.points.max(1).log10().pow(2).add(1)
                 },
                 effectDisplay() {
-                    return upgradeEffect("p",21).toStringWithDecimalPlaces(3)
+                    return format(upgradeEffect("p",21),3)
                 }
-            }
+            },
+            22: {
+                title: "Determination",
+                description: "Gain more points based on your prestige points.",
+                cost: new Decimal(20),
+                unlocked() {
+                    return hasUpgrade("p",12) && hasUpgrade("p",21)
+                },
+                effect() {
+                    return player.p.points.sqrt().add(1)
+                },
+                effectDisplay() {
+                    return format(upgradeEffect("p",22),3)
+                }
+            },
         }
 })
