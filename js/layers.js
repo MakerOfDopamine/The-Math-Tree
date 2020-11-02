@@ -6,8 +6,8 @@ addLayer("p", {
             unlocked: true,
 			points: new Decimal(0),
         }},
-        color: "#0044ff",
-        requires: new Decimal(10), // Can be a function that takes requirement increases into account
+        color: "#0068ff",
+        requires: new Decimal(1), // Can be a function that takes requirement increases into account
         resource: "Prestige Points", // Name of prestige currency
         baseResource: "points", // Name of resource prestige is based on
         baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -15,7 +15,6 @@ addLayer("p", {
         exponent: 0.5, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
-            if (hasUpgrade("p",21)) mult = mult.times(2)
             return mult
         },
         gainExp() { // Calculate the exponent on main currency from bonuses
@@ -27,46 +26,8 @@ addLayer("p", {
         ],
         layerShown(){return true},
         upgrades: {
-            rows: 2,
-            cols: 5,
-            11: {
-                description: "Gain 1 Point per second.",
-                cost: new Decimal("1")
-            },
-            12: {
-                description: "Double your point gain.",
-                cost: new Decimal("1"),
-                unlocked() {
-                    return hasUpgrade("p", 11)
-                }
-            },
-            13: {
-                description: "Double your point gain, again.",
-                cost: new Decimal("1"),
-                unlocked() {
-                    return hasUpgrade("p", 12)
-                }
-            },
-            14: {
-                description: "Double your point gain, yet again.",
-                cost: new Decimal("2"),
-                unlocked() {
-                    return hasUpgrade("p", 13)
-                }
-            },
-            15: {
-                description: "This is boring. Double it again.",
-                cost: new Decimal("5"),
-                unlocked() {
-                    return hasUpgrade("p", 14)
-                }
-            },
-            21: {
-                description: "Prestige point gain is doubled.",
-                cost: new Decimal("10"),
-                unlocked() {
-                    return hasUpgrade("p", 15)
-                }
-            }
+            rows: 7,
+            cols: 9,
+            
         }
 })
