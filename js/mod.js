@@ -7,7 +7,7 @@ let modInfo = {
 	discordLink: "",
 	changelogLink: "https://github.com/MakerOfDopamine/The-Modding-Tree/blob/master/changelog.md",
     offlineLimit: 24,  // In hours
-    initialStartPoints: new Decimal (0) // Used for hard resets and new players
+    initialStartPoints: new Decimal (10) // Used for hard resets and new players
 }
 
 // Set your version in num and name
@@ -34,7 +34,9 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(0.05)
+	let gain = new Decimal(0)
+	if (hasUpgrade("p",11)) gain = gain.plus(1)
+	for (var t = 2; t < 10; t++) if (hasUpgrade("p",Number("1" + t))) gain = gain.times(2)
 	return gain
 }
 

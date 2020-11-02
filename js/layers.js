@@ -6,8 +6,8 @@ addLayer("p", {
             unlocked: true,
 			points: new Decimal(0),
         }},
-        color: "#0068ff",
-        requires: new Decimal(1), // Can be a function that takes requirement increases into account
+        color: "#00aaff",
+        requires: new Decimal(10), // Can be a function that takes requirement increases into account
         resource: "Prestige Points", // Name of prestige currency
         baseResource: "points", // Name of resource prestige is based on
         baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -28,6 +28,74 @@ addLayer("p", {
         upgrades: {
             rows: 7,
             cols: 9,
-            
+            11: {
+                title: "Start Working",
+                description: "Generate 1 Point per second.",
+                cost: new Decimal(1),
+            },
+            12: {
+                title: "Work slightly harder",
+                description: "Double your point gain.",
+                cost: new Decimal(1),
+                unlocked() {
+                    return hasUpgrade("p",11)
+                }
+            },
+            13: {
+                title: "Work harder",
+                description: "Double your point gain again.",
+                cost: new Decimal(1),
+                unlocked() {
+                    return hasUpgrade("p",12)
+                }
+            },
+            14: {
+                title: "Working really hard",
+                description: "Double your point gain, again.",
+                cost: new Decimal(2),
+                unlocked() {
+                    return hasUpgrade("p",13)
+                }
+            },
+            15: {
+                title: "Overwork",
+                description: "Double your point gain yet again.",
+                cost: new Decimal(3),
+                unlocked() {
+                    return hasUpgrade("p",14)
+                }
+            },
+            16: {
+                title: "All-Nighter",
+                description: "Double your point gain.",
+                cost: new Decimal(5),
+                unlocked() {
+                    return hasUpgrade("p",15)
+                }
+            },
+            17: {
+                title: "Sleep less",
+                description: "Double your point gain.",
+                cost: new Decimal(10),
+                unlocked() {
+                    return hasUpgrade("p",16)
+                }
+            },
+            18: {
+                title: "Work on weekends",
+                description: "Double your point gain.",
+                cost: new Decimal(20),
+                unlocked() {
+                    return hasUpgrade("p",17)
+                }
+            },
+            19: {
+                title: "Work on holidays",
+                description: "Double your point gain.",
+                cost: new Decimal(35),
+                unlocked() {
+                    return hasUpgrade("p",18)
+                }
+            },
         }
 })
