@@ -15,6 +15,8 @@ addLayer("p", {
         exponent: 0.5, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
+            let upg24 = upgradeEffect("p",24)
+            if (hasUpgrade("p",24)) mult = mult.times(upg24)
             return mult
         },
         gainExp() { // Calculate the exponent on main currency from bonuses
@@ -126,6 +128,20 @@ addLayer("p", {
                 unlocked() {
                     return hasUpgrade("p",14) && hasUpgrade("p",23) 
                 }
-            }
+            },
+            24: {
+                title: "Imagination",
+                description: "Gain more Prestige points based on your current points.",
+                cost: new Decimal("1e5"),
+                unlocked() {
+                    return hasUpgrade("p",15) && hasUpgrade("p",24) 
+                },
+                effect() {
+                    return player.points.max(1).log10().pow(2).add(1)
+                },
+                effectDisplay() {
+                    return format(upgradeEffect("p",24),3)
+                }
+            },
         }
 })
