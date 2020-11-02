@@ -7,7 +7,7 @@ let modInfo = {
 	discordLink: "",
 	changelogLink: "https://github.com/MakerOfDopamine/The-Modding-Tree/blob/master/changelog.md",
     offlineLimit: 24,  // In hours
-    initialStartPoints: new Decimal (10) // Used for hard resets and new players
+    initialStartPoints: new Decimal (0) // Used for hard resets and new players
 }
 
 // Set your version in num and name
