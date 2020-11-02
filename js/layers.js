@@ -129,7 +129,7 @@ addLayer("p", {
                     return hasUpgrade("p",14) && hasUpgrade("p",23) 
                 }
             },
-            24: {
+            25: {
                 title: "Imagination",
                 description: "Gain more Prestige points based on your current points.",
                 cost: new Decimal("1e5"),
