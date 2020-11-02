@@ -56,8 +56,6 @@ function isEndgame() {
 	return player.points.gte(new Decimal("eeee10"))
 }
 
-
-
 // Less important things beyond this point!
 
 // You can change this if you have things that can be messed up by long tick lengths

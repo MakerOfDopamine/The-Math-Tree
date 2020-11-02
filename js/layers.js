@@ -15,6 +15,7 @@ addLayer("p", {
         exponent: 0.5, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
+            if (hasUpgrade("p",21)) mult = mult.times(2)
             return mult
         },
         gainExp() { // Calculate the exponent on main currency from bonuses
@@ -61,7 +62,7 @@ addLayer("p", {
                 }
             },
             21: {
-                description: "Prestige formula is improved. (^0.5 => ^0.6)",
+                description: "Prestige point gain is doubled.",
                 cost: new Decimal("10"),
                 unlocked() {
                     return hasUpgrade("p", 15)
@@ -69,8 +70,3 @@ addLayer("p", {
             }
         }
 })
-function gainMult() {
-    var base = new Decimal(1)
-    if (hasUpgrade("p",21)) base = base.times(2)
-    return base
-}
