@@ -118,6 +118,14 @@ addLayer("p", {
                 unlocked() {
                     return hasUpgrade("p",13) && hasUpgrade("p",22)
                 },
+            },
+            24: {
+                title: "Improvisation",
+                description: "All upgrade triple instead of double production.",
+                cost: new Decimal("1e4"),
+                unlocked() {
+                    return hasUpgrade("p",14) && hasUpgrade("p",23) 
+                }
             }
         }
 })
