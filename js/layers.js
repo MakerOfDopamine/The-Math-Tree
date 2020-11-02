@@ -90,7 +90,7 @@ addLayer("p", {
                 },
                 effect() {
                     let normal = player.points.max(1).log10().pow(2).add(1)
-                    let upg23 = player.points.max(1).logBase(Math.E).pow(3).add(1)
+                    let upg23 = player.points.max(1).ln().pow(3).add(1)
                     return hasUpgrade("p",23) ? upg23 : normal
                 },
                 effectDisplay() {
