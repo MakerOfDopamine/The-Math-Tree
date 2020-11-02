@@ -39,6 +39,8 @@ function getPointGen() {
 	for (var t = 2; t < 8; t++) if (hasUpgrade("p",Number("1" + t))) gain = gain.times(2)
 	let upg21Eff = upgradeEffect("p",21)
 	if (hasUpgrade("p",21)) gain = gain.times(upg21Eff)
+	let upg22Eff = upgradeEffect("p",22)
+	if (hasUpgrade("p",22)) gain = gain.times(upg22Eff)
 	return gain
 }
 
