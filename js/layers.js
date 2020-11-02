@@ -89,7 +89,9 @@ addLayer("p", {
                     return hasUpgrade("p",11)
                 },
                 effect() {
-                    return player.points.max(1).log10().pow(2).add(1)
+                    let normal = player.points.max(1).log10().pow(2).add(1)
+                    let upg23 = player.points.max(1).log().pow(3).add(1)
+                    return hasUpgrade("p",23) ? upg23 : normal
                 },
                 effectDisplay() {
                     return format(upgradeEffect("p",21),3)
@@ -109,5 +111,13 @@ addLayer("p", {
                     return format(upgradeEffect("p",22),3)
                 }
             },
+            23: {
+                title: "Refactorisation",
+                description: "Motivation has a better formula.",
+                cost: new Decimal(100),
+                unlocked() {
+                    return hasUpgrade("p",13) && hasUpgrade("p",22)
+                },
+            }
         }
 })
