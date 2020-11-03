@@ -15,12 +15,15 @@ addLayer("p", {
         exponent: 0.5, // Prestige currency exponent
         gainMult() { // Calculate the multiplier for main currency from bonuses
             mult = new Decimal(1)
-            let upg24 = upgradeEffect("p",24)
-            if (hasUpgrade("p",24)) mult = mult.times(upg24)
+            let upg25 = upgradeEffect("p",25)
+            if (hasUpgrade("p",25)) mult = mult.times(upg25)
+            let upg26 = upgradeEffect("p",26)
+            if (hasUpgrade("p",26)) mult = mult.times(upg26)
             return mult
         },
         gainExp() { // Calculate the exponent on main currency from bonuses
-            return new Decimal(1)
+            var exp = new Decimal(1)
+            return exp
         },
         row: 0, // Row the layer is in on the tree (0 is the first row)
         hotkeys: [
@@ -131,7 +134,7 @@ addLayer("p", {
             },
             25: {
                 title: "Imagination",
-                description: "Gain more Prestige points based on your current points.",
+                description: "Gain more prestige points based on your current points.",
                 cost: new Decimal("1e5"),
                 unlocked() {
                     return hasUpgrade("p",15) && hasUpgrade("p",24) 
@@ -140,8 +143,59 @@ addLayer("p", {
                     return player.points.max(1).log10().pow(2).add(1)
                 },
                 effectDisplay() {
-                    return format(upgradeEffect("p",24),3)
+                    return format(upgradeEffect("p",25),3)
                 }
             },
+            26: {
+                title: "Creation",
+                description: "Gain more prestige points based on your current prestige points.",
+                cost: new Decimal("1e7"),
+                unlocked() {
+                    return hasUpgrade("p",16) && hasUpgrade("p",25) 
+                },
+                effect() {
+                    return player.points.max(1).log10().pow(0.5).add(1)
+                },
+                effectDisplay() {
+                    return format(upgradeEffect("p",26),3)
+                }
+            },
+            27: {
+                title: "Reincarnation",
+                description: "Unlock the next layer.",
+                cost: new Decimal("1e9"),
+                unlocked() {
+                    return hasUpgrade("p",17) && hasUpgrade("p",26) 
+                },
+            },
         }
+})
+addLayer("b",{
+    name: "booster", // This is optional, only used in a few places, If absent it just uses the layer id.
+        symbol: "B", // This appears on the layer's node. Default is the id with the first letter capitalized
+        position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+        startData() { return {
+            unlocked: false,
+			points: new Decimal(0),
+        }},
+        color: "#8f8fff",
+        requires: new Decimal(1e9), // Can be a function that takes requirement increases into account
+        resource: "Boosters", // Name of prestige currency
+        baseResource: "Prestige Points", // Name of resource prestige is based on
+        baseAmount() {return player.p.points}, // Get the current amount of baseResource
+        type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+        exponent: 0.5, // Prestige currency exponent
+        gainMult() { // Calculate the multiplier for main currency from bonuses
+            mult = new Decimal(1)
+            return mult
+        },
+        gainExp() { // Calculate the exponent on main currency from bonuses
+            var exp = new Decimal(1)
+            return exp
+        },
+        row: 1, // Row the layer is in on the tree (0 is the first row)
+        hotkeys: [
+            {key: "b", description: "Reset for boosters", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        ],
+        layerShown(){return hasUpgrade("p",27)},
 })
