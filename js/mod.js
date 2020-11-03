@@ -43,6 +43,7 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+	"This is a test"
 ]
 
 // Determines when the game "ends"
