@@ -36,7 +36,7 @@ addLayer("p", {
                     var row1 = []
                     var gain = hasUpgrade("p", 11) ? 0.01 : 0
                     for (var i = 2; i < 3; i++) row1.push(hasUpgrade("p", Number("1" + i)) ? upgradeEffect("p", Number("1" + i)) : 1)
-                    for (var i = 2; i < 3; i++) gain = gain.mul(row1[i - 2])
+                    for (var i = 2; i < 3; i++) gain = gain.times(row1[i - 2])
                     return gain;
                 },
                 effectDisplay() {
