@@ -33,7 +33,7 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(0)
+	let gain = new Decimal(hasUpgrade("p",11) ? upgradeEffect("p",11) : 0)
 	return gain
 }
 
