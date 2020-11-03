@@ -33,10 +33,25 @@ addLayer("p", {
                 description: "Start gaining points.",
                 cost: new Decimal(1),
                 effect() {
-                    return new Decimal(0.01)
+                    var row1 = []
+                    var gain = hasUpgrade("p", 11) ? 0.01 : 0
+                    for (var i = 2; i < 3; i++) row1.push(hasUpgrade("p", Number("1" + i)) ? upgradeEffect("p", Number("1" + i)) : 1)
+                    for (var i = 2; i < 3; i++) gain = gain.mul(row1[i - 2])
+                    return gain;
                 },
                 effectDisplay() {
                     return "+" + upgradeEffect("p",11) + "/s."
+                }
+            },
+            12: {
+                title: "1;2",
+                description: "Boost the previous upgrade.",
+                cost: new Decimal(1),
+                effect() {
+                    return new Decimal(player.points.add(1).sqrt())
+                },
+                effectDisplay() {
+                    return "*" + format(upgradeEffect("p",12),3) + "."
                 }
             },
         }
